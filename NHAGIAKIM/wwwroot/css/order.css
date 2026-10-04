@@ -1,0 +1,808 @@
+/* ============================================================
+   ORDER.CSS — Trang đặt hàng Nhà Giả Kim
+   Kế thừa design system từ style.css (CSS variables, btn-gold, form-group, image-placeholder, v.v.)
+   Không override visual style hiện tại, chỉ thêm layout mới.
+   ============================================================ */
+
+/* ============================================================
+   FEEDBACK SECTION (trong index.html)
+   ============================================================ */
+.feedback-section {
+    position: relative;
+    background-color: var(--bg-sand-surface);
+    color: var(--text-dark-body);
+    padding: 100px 0 110px;
+    border-top: 1px solid rgba(201, 160, 80, 0.25);
+    border-bottom: 1px solid rgba(28, 24, 21, 0.1);
+    overflow: hidden;
+}
+
+.feedback-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* --- Feedback List --- */
+.feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.feedback-card {
+    background: var(--bg-sand-card);
+    border: 1px solid rgba(201, 160, 80, 0.2);
+    border-radius: 4px;
+    padding: 24px 22px;
+    box-shadow: 0 4px 16px rgba(40, 30, 20, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feedback-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(40, 30, 20, 0.1);
+}
+
+.feedback-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.feedback-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold-gradient);
+    color: #17120a;
+    font-family: var(--font-heading-royal);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px var(--gold-glow);
+}
+
+.feedback-card-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.feedback-customer-name {
+    font-family: var(--font-sans-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark-heading);
+}
+
+.feedback-stars {
+    color: var(--gold-primary);
+    font-size: 0.88rem;
+    letter-spacing: 2px;
+}
+
+.feedback-date {
+    font-size: 0.78rem;
+    color: var(--text-dark-muted);
+    letter-spacing: 0.04em;
+    margin-left: auto;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.feedback-content {
+    font-family: var(--font-serif-literary);
+    font-style: italic;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--text-dark-body);
+}
+
+/* --- Feedback Form Wrapper --- */
+.feedback-form-wrapper {
+    background: var(--bg-sand-card);
+    border: 1px solid rgba(201, 160, 80, 0.25);
+    border-radius: 4px;
+    padding: 36px 32px;
+    box-shadow: 0 8px 30px rgba(40, 30, 20, 0.06);
+}
+
+.feedback-form-title {
+    font-family: var(--font-heading-royal);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-dark-heading);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.feedback-form-subtitle {
+    font-size: 0.88rem;
+    color: var(--text-dark-muted);
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+/* Reuse .form-group from style.css — override for light background */
+.feedback-form-wrapper .form-group label,
+.order-customer-fields .form-group label {
+    color: var(--text-dark-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.feedback-form-wrapper .form-group input,
+.feedback-form-wrapper .form-group textarea {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(28, 24, 21, 0.2);
+    color: var(--text-dark-heading);
+    font-family: var(--font-sans-body);
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    width: 100%;
+}
+
+.feedback-form-wrapper .form-group input:focus,
+.feedback-form-wrapper .form-group textarea:focus {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 3px rgba(201, 160, 80, 0.12);
+}
+
+.feedback-form-wrapper .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.required-mark {
+    color: #b94040;
+    margin-left: 2px;
+}
+
+/* Star Picker */
+.star-picker {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.star-btn {
+    font-size: 1.6rem;
+    color: var(--text-dark-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.15s ease;
+    padding: 2px;
+    line-height: 1;
+}
+
+.star-btn:hover,
+.star-btn.active,
+.star-btn.highlighted {
+    color: var(--gold-primary);
+    transform: scale(1.15);
+}
+
+.feedback-submit-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 4px;
+    font-size: 0.88rem;
+    letter-spacing: 0.12em;
+}
+
+.feedback-form-message {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.feedback-form-message.success {
+    background: rgba(50, 120, 60, 0.1);
+    border: 1px solid rgba(50, 120, 60, 0.35);
+    color: #2a6e30;
+}
+
+.feedback-form-message.error {
+    background: rgba(180, 40, 40, 0.08);
+    border: 1px solid rgba(180, 40, 40, 0.3);
+    color: #8b2424;
+}
+
+@media (max-width: 1024px) {
+    .feedback-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    .feedback-section {
+        padding: 80px 0 70px;
+    }
+
+    .feedback-form-wrapper {
+        padding: 28px 22px;
+    }
+}
+
+
+/* ============================================================
+   ORDER PAGE — Trang đặt hàng riêng (order.html)
+   ============================================================ */
+.order-page {
+    background-color: var(--bg-dark-deep);
+}
+
+.order-main {
+    padding-top: 120px;
+    padding-bottom: 90px;
+    min-height: 100vh;
+    background-color: #0c0a08;
+    background-image:
+        radial-gradient(circle at 90% 10%, rgba(201, 160, 80, 0.09) 0%, transparent 55%),
+        radial-gradient(circle at 10% 80%, rgba(201, 160, 80, 0.05) 0%, transparent 40%);
+}
+
+/* --- Page Header --- */
+.order-page-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.order-page-title {
+    font-family: var(--font-heading-royal);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.order-page-subtitle {
+    font-family: var(--font-serif-literary);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    opacity: 0.85;
+}
+
+/* --- 2-column grid --- */
+.order-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* --- Breadcrumb --- */
+.order-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-light-muted);
+}
+
+.breadcrumb-link {
+    color: var(--gold-light);
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #ffffff;
+}
+
+.breadcrumb-sep {
+    color: var(--text-light-muted);
+}
+
+.breadcrumb-current {
+    color: #d1c8bb;
+}
+
+/* --- Section blocks --- */
+.order-section {
+    background: rgba(28, 23, 19, 0.65);
+    border: 1px solid rgba(201, 160, 80, 0.2);
+    border-radius: 4px;
+    padding: 32px 28px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.order-section:last-child {
+    margin-bottom: 0;
+}
+
+.order-section-title {
+    font-family: var(--font-heading-royal);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.order-section-number {
+    font-family: var(--font-serif-literary);
+    font-style: italic;
+    font-size: 1.55rem;
+    color: var(--gold-primary);
+    line-height: 1;
+}
+
+/* --- Product Item --- */
+.order-product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-product-item {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed rgba(201, 160, 80, 0.2);
+}
+
+.order-product-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.order-product-image {
+    width: 90px;
+    height: 120px;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(201, 160, 80, 0.25);
+    background: rgba(25, 22, 18, 0.8);
+    flex-shrink: 0;
+}
+
+.order-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.order-book-title {
+    font-family: var(--font-heading-royal);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+}
+
+.order-book-meta {
+    font-size: 0.82rem;
+    color: var(--text-light-muted);
+    letter-spacing: 0.02em;
+}
+
+.order-unit-price {
+    font-family: var(--font-serif-literary);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-top: 4px;
+}
+
+.order-product-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+/* Quantity Stepper */
+.order-qty-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.order-qty-label {
+    font-size: 0.75rem;
+    color: var(--text-light-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.order-qty-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(201, 160, 80, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.qty-stepper-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--gold-light);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.qty-stepper-btn:hover {
+    background: var(--gold-primary);
+    color: #17120a;
+}
+
+.qty-input {
+    width: 44px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-left: 1px solid rgba(201, 160, 80, 0.2);
+    border-right: 1px solid rgba(201, 160, 80, 0.2);
+    color: #ffffff;
+    font-family: var(--font-sans-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    height: 32px;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Subtotal per item */
+.order-subtotal {
+    font-family: var(--font-serif-literary);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold-light);
+}
+
+/* --- Customer Fields (light form on dark card) --- */
+.order-customer-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.order-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Form group inputs on dark background */
+.order-customer-fields .form-group label {
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.order-customer-fields .form-group input,
+.order-customer-fields .form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 160, 80, 0.28);
+    padding: 10px 14px;
+    border-radius: 2px;
+    color: #ffffff;
+    font-family: var(--font-sans-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.25s ease, background 0.25s ease;
+    width: 100%;
+}
+
+.order-customer-fields .form-group input::placeholder,
+.order-customer-fields .form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.order-customer-fields .form-group input:focus,
+.order-customer-fields .form-group textarea:focus {
+    border-color: var(--gold-primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.order-customer-fields .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* --- Order Summary Card --- */
+.order-right-col {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.order-summary-card {
+    background: rgba(28, 23, 19, 0.75);
+    border: 1px solid rgba(201, 160, 80, 0.3);
+    border-radius: 4px;
+    padding: 32px 26px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(201, 160, 80, 0.08);
+}
+
+.order-summary-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.summary-label {
+    font-size: 0.88rem;
+    color: var(--text-light-body);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.summary-label-note {
+    font-size: 0.74rem;
+    color: var(--text-light-muted);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.summary-value {
+    font-family: var(--font-serif-literary);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f5f0e6;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.summary-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201, 160, 80, 0.4), transparent);
+    margin: 4px 0;
+}
+
+.summary-total-row {
+    align-items: center;
+}
+
+.summary-total-label {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.summary-total {
+    font-size: 1.55rem;
+    color: var(--gold-light);
+    font-weight: 700;
+}
+
+/* Note list */
+.summary-note-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 16px 0 8px;
+    border-top: 1px dashed rgba(201, 160, 80, 0.2);
+}
+
+.summary-note-item {
+    font-size: 0.8rem;
+    color: var(--text-light-muted);
+    display: flex;
+    gap: 8px;
+}
+
+/* Submit button */
+.order-submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+}
+
+.order-form-message {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.order-form-message.success {
+    background: rgba(50, 120, 60, 0.12);
+    border: 1px solid rgba(50, 120, 60, 0.3);
+    color: #6fcf7f;
+}
+
+.order-form-message.error {
+    background: rgba(180, 40, 40, 0.1);
+    border: 1px solid rgba(180, 40, 40, 0.35);
+    color: #e07070;
+}
+
+/* --- Trust Badges --- */
+.order-trust-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 4px;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--text-light-muted);
+}
+
+.trust-badge-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: var(--gold-primary);
+}
+
+/* --- Order Footer --- */
+.order-footer {
+    background: rgba(8, 7, 6, 0.85);
+    border-top: 1px solid rgba(201, 160, 80, 0.18);
+    padding: 24px 0;
+}
+
+.order-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.order-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.order-footer-brand .brand-text {
+    font-family: var(--font-heading-royal);
+    font-size: 1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+}
+
+.order-footer-copy {
+    font-size: 0.76rem;
+    color: var(--text-light-muted);
+}
+
+.order-footer-nav {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .order-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .order-right-col {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-main {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
+    .order-product-item {
+        grid-template-columns: 72px 1fr;
+        gap: 14px;
+    }
+
+    .order-product-controls {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .order-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .order-section {
+        padding: 24px 20px;
+    }
+
+    .order-footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feedback-form-wrapper {
+        padding: 24px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-product-item {
+        grid-template-columns: 1fr;
+    }
+
+    .order-product-image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .order-product-controls {
+        align-items: flex-start;
+    }
+}

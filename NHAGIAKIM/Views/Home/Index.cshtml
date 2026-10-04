@@ -1,0 +1,498 @@
+@model NHAGIAKIM.Models.Book
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhà Giả Kim - The Alchemist | Kiệt tác của Paulo Coelho</title>
+  <meta name="description"
+    content="Khám phá kiệt tác Nhà Giả Kim của Paulo Coelho - cuốn sách kinh điển truyền cảm hứng cho hàng chục triệu độc giả trên toàn thế giới trong hành trình tìm kiếm ước mơ.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/order.css" asp-append-version="true" />
+</head>
+
+<body>
+
+  <header class="site-header" id="mainHeader">
+    <div class="container header-container">
+      <a href="#hero" class="brand-logo" aria-label="Trang chủ Nhà Giả Kim">
+        <div class="brand-icon-wrapper">
+          <svg class="brand-icon-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="14" r="5" fill="#C9A050" opacity="0.85" />
+            <path d="M4 32L16 16L24 26L36 10L40 32H4Z" stroke="#E4C57C" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M16 16L24 28" stroke="#E4C57C" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="brand-text">Nhà Giả Kim</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#hero" class="nav-link active">Trang chủ</a>
+        <a href="#author" class="nav-link">Tác giả</a>
+        <a href="#recognition" class="nav-link">Review</a>
+        <a href="#journey" class="nav-link">Hành trình</a>
+        <a href="#feedback" class="nav-link">Feedback</a>
+      </nav>
+
+      <div class="header-actions">
+        <a asp-controller="Orders" asp-action="Create" class="btn-gold header-btn">MUA SÁCH</a>
+        <button class="mobile-nav-toggle" id="navToggle" aria-label="Mở menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-section" id="hero">
+    <canvas id="alchemyDustCanvas"></canvas>
+    <div class="hero-sun-glow"></div>
+    <div class="container hero-container">
+      <div class="hero-left reveal-fade-left">
+        <div class="hero-author-vertical"><span>PAULO COELHO &bull; 1988</span></div>
+        <div class="hero-left-content">
+          <h1 class="hero-main-title">
+            <span>NHÀ</span><span>GIẢ</span><span>KIM</span>
+          </h1>
+          <p class="hero-quote">Một hành trình đi tìm kho báu, nhưng cuối cùng lại là tìm thấy chính mình.</p>
+          <div class="hero-actions">
+            <a href="#journey" class="btn-outline-glass">KHÁM PHÁ CUỐN SÁCH &rarr;</a>
+            <a asp-controller="Orders" asp-action="Create" class="btn-gold">MUA SÁCH</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right reveal-fade-right delay-2">
+        <div class="hero-stat-item">
+          <div class="hero-stat-title">THE ALCHEMIST</div>
+          <div class="hero-stat-desc">KIỆT TÁC VĂN HỌC</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-title">65+ MILLION COPIES</div>
+          <div class="hero-stat-desc">BẢN ĐƯỢC BÁN RA</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-title">TRANSLATED WORLDWIDE</div>
+          <div class="hero-stat-desc">HƠN 80 NGÔN NGỮ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="author-section" id="author">
+    <div class="container">
+      <div class="section-tag theme-light reveal-fade-up">
+        <span class="number">01</span><span class="line"></span><span>THE AUTHOR</span>
+      </div>
+      <div class="author-grid">
+        <div class="author-portrait-wrapper reveal-fade-left">
+          <div class="author-portrait-frame image-placeholder">
+            <img src="~/img/sach.png" alt="Chân dung nhà văn Paulo Coelho" id="authorImage"
+              onerror="this.style.display='none'; document.getElementById('authorFallback').style.display='flex';" />
+            <div class="author-portrait-fallback" id="authorFallback" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+              <div style="font-family:var(--font-heading-royal);font-size:0.95rem;margin-bottom:6px;">PAULO COELHO</div>
+            </div>
+          </div>
+          <div class="author-signature">
+            <div class="author-signature-text">Paulo Coelho</div>
+          </div>
+        </div>
+
+        <div class="author-bio reveal-fade-up delay-1">
+          <h2 class="author-name">PAULO COELHO</h2>
+          <span class="author-sub">Nhà văn Brazil</span>
+          <div class="author-desc">
+            <p>Paulo Coelho sinh năm 1947 tại Rio de Janeiro, Brazil. Ông là một trong những nhà văn có tầm ảnh hưởng
+              lớn nhất thế giới, với những tác phẩm truyền cảm hứng về hành trình, ước mơ và sự tìm kiếm ý nghĩa của
+              cuộc sống. <em>Nhà Giả Kim</em> là tác phẩm nổi tiếng nhất của ông, được dịch ra hơn 80 ngôn ngữ và bán
+              hơn 65 triệu bản trên toàn thế giới.</p>
+          </div>
+        </div>
+
+        <div class="author-specs-card reveal-fade-right delay-2">
+          <div class="spec-row"><span class="spec-label">Tác giả</span><span class="spec-value">Paulo Coelho</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Năm xuất bản</span><span class="spec-value">1988</span></div>
+          <div class="spec-row"><span class="spec-label">Thể loại</span><span class="spec-value">Tiểu thuyết</span>
+          </div>
+          <div class="spec-row"><span class="spec-label">Số trang</span><span class="spec-value">163</span></div>
+          <div class="spec-row"><span class="spec-label">Ngôn ngữ</span><span class="spec-value">Tiếng Anh<small>(và
+                nhiều ngôn ngữ khác)</small></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="author-landscape-bg">
+      <svg viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 190L120 110L200 150L310 70L420 160L520 80L600 190" stroke="#8E7863" stroke-width="1.5"
+          stroke-dasharray="3 3" />
+        <path d="M50 190L160 130L260 170L380 90L480 180L550 140L600 190" stroke="#C9A050" stroke-width="1"
+          opacity="0.6" />
+        <path d="M180 190L230 165L290 185L350 145L400 190" stroke="#7D7162" stroke-width="1" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="recognition-section" id="recognition">
+    <div class="container">
+      <div class="section-tag theme-light reveal-fade-up">
+        <span class="number">02</span><span class="line"></span><span>RECOGNITION</span>
+      </div>
+      <div class="recognition-grid">
+        <div class="recognition-card reveal-fade-up delay-1">
+          <div class="press-logo"><span class="press-logo-nyt">The New York Times</span></div>
+          <p class="press-quote">"An international literary phenomenon"</p>
+        </div>
+        <div class="recognition-card reveal-fade-up delay-2">
+          <div class="press-logo">
+            <div class="press-logo-bbc"><span>B</span><span>B</span><span>C</span></div>
+          </div>
+          <p class="press-quote">"Translated around the world"</p>
+        </div>
+        <div class="recognition-card reveal-fade-up delay-3">
+          <div class="press-logo"><span class="press-logo-guardian">The Guardian</span></div>
+          <p class="press-quote">"Loved by millions of readers"</p>
+        </div>
+        <div class="recognition-card reveal-fade-up delay-4">
+          <div class="press-logo"><span class="press-logo-time">TIME</span></div>
+          <p class="press-quote">"A modern classic"</p>
+        </div>
+        <div class="recognition-card reveal-fade-up delay-5">
+          <div class="press-logo"><span class="press-logo-wapo">The Washington Post</span></div>
+          <p class="press-quote">"A book for every generation"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="journey-section" id="journey">
+    <div class="container journey-container">
+      <div class="section-tag theme-dark reveal-fade-up">
+        <span class="number">03</span><span class="line"></span><span>THE JOURNEY</span>
+      </div>
+      <div class="journey-quotes-stage">
+        <div class="journey-phrase journey-phrase-1 reveal-fade-left delay-1">LẮNG NGHE<br>TRÁI TIM</div>
+        <div class="journey-phrase journey-phrase-2 reveal-fade-left delay-2">DÁM THEO ĐUỔI ƯỚC MƠ</div>
+        <div class="journey-phrase journey-phrase-3 reveal-fade-right delay-2">HÀNH TRÌNH QUAN TRỌNG HƠN ĐÍCH ĐẾN</div>
+      </div>
+      <div class="journey-bottom-summary reveal-fade-up delay-3">
+        <p class="journey-summary-text"><em>Nhà Giả Kim</em> không chỉ là câu chuyện về một chàng trai trẻ đi tìm kho
+          báu, mà còn là hành trình khám phá bản thân, về những giấc mơ, tình yêu, và những bài học quý giá mà cuộc sống
+          mang lại.</p>
+        <div class="journey-bottom-buttons">
+          <a href="#author" class="btn-dark">ĐỌC THỬ &rarr;</a>
+          <a asp-controller="Orders" asp-action="Create" class="btn-gold">MUA SÁCH &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="readers-section" id="readers">
+    <div class="container">
+      <div class="section-tag theme-light reveal-fade-up">
+        <span class="number">04</span><span class="line"></span><span>READERS</span>
+      </div>
+      <div class="readers-grid">
+        <div class="reader-reviews-col">
+          <div class="reader-card reveal-fade-up delay-1">
+            <div class="reader-header">
+              <div class="reader-avatar">
+                <img src="~/img/anh2.png" alt="Minh Anh"
+                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23c9a050\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M12 14c-6 0-8 3-8 5v1h16v-1c0-2-2-5-8-5z\'/></svg>'" />
+              </div>
+              <div class="reader-info"><span class="reader-name">Minh Anh</span><span
+                  class="reader-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p class="reader-quote">"Một cuốn sách tuyệt vời! Đọc xong mình thấy như được tiếp thêm động lực để theo
+              đuổi ước mơ của bản thân."</p>
+          </div>
+          <div class="reader-card reveal-fade-up delay-2">
+            <div class="reader-header">
+              <div class="reader-avatar">
+                <img src="~/img/anh2.png" alt="Thu Phương"
+                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23c9a050\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M12 14c-6 0-8 3-8 5v1h16v-1c0-2-2-5-8-5z\'/></svg>'" />
+              </div>
+              <div class="reader-info"><span class="reader-name">Thu Phương</span><span
+                  class="reader-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p class="reader-quote">"Câu chuyện giản dị nhưng sâu sắc. Đọc Nhà Giả Kim, tôi học được cách lắng nghe trái
+              tim mình."</p>
+          </div>
+        </div>
+
+        <div class="readers-center-summary reveal-zoom-in delay-2">
+          <blockquote class="readers-highlight-quote">"Một cuốn sách nhỏ nhưng chứa đựng cả một thế giới lớn."
+          </blockquote>
+          <div class="readers-score-wrapper">
+            <div class="readers-score-number">4.8 <span>/ 5</span></div>
+            <div class="readers-score-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+          <div class="rating-breakdown-table" id="ratingBreakdown">
+            <div class="rating-bar-row"><span class="rating-star-label">5 sao</span>
+              <div class="rating-bar-track">
+                <div class="rating-bar-fill" data-percent="78"></div>
+              </div><span class="rating-percent-label">78%</span>
+            </div>
+            <div class="rating-bar-row"><span class="rating-star-label">4 sao</span>
+              <div class="rating-bar-track">
+                <div class="rating-bar-fill" data-percent="15"></div>
+              </div><span class="rating-percent-label">15%</span>
+            </div>
+            <div class="rating-bar-row"><span class="rating-star-label">3 sao</span>
+              <div class="rating-bar-track">
+                <div class="rating-bar-fill" data-percent="5"></div>
+              </div><span class="rating-percent-label">5%</span>
+            </div>
+            <div class="rating-bar-row"><span class="rating-star-label">2 sao</span>
+              <div class="rating-bar-track">
+                <div class="rating-bar-fill" data-percent="1"></div>
+              </div><span class="rating-percent-label">1%</span>
+            </div>
+            <div class="rating-bar-row"><span class="rating-star-label">1 sao</span>
+              <div class="rating-bar-track">
+                <div class="rating-bar-fill" data-percent="1"></div>
+              </div><span class="rating-percent-label">1%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reader-reviews-col">
+          <div class="reader-card reveal-fade-up delay-1">
+            <div class="reader-header">
+              <div class="reader-avatar">
+                <img src="~/img/anh2.png" alt="Hoàng Nam"
+                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23c9a050\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M12 14c-6 0-8 3-8 5v1h16v-1c0-2-2-5-8-5z\'/></svg>'" />
+              </div>
+              <div class="reader-info"><span class="reader-name">Hoàng Nam</span><span
+                  class="reader-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p class="reader-quote">"Một hành trình đầy cảm hứng. Cuốn sách khiến mình suy nghĩ nhiều hơn về cuộc sống."
+            </p>
+          </div>
+          <div class="reader-card reveal-fade-up delay-2">
+            <div class="reader-header">
+              <div class="reader-avatar">
+                <img src="~/img/anh2.png" alt="Lan Anh"
+                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23c9a050\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M12 14c-6 0-8 3-8 5v1h16v-1c0-2-2-5-8-5z\'/></svg>'" />
+              </div>
+              <div class="reader-info"><span class="reader-name">Lan Anh</span><span
+                  class="reader-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p class="reader-quote">"Tuyệt vời! Một trong những cuốn sách hay nhất mà mình từng đọc. Rất đáng để trải
+              nghiệm."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEEDBACK SECTION — id="feedback"
+       ============================================================ -->
+  <section class="feedback-section" id="feedback">
+    <div class="container">
+      <div class="section-tag theme-light reveal-fade-up">
+        <span class="number">05</span><span class="line"></span><span>FEEDBACK</span>
+      </div>
+
+      <div class="feedback-layout">
+
+        <!-- DANH SÁCH FEEDBACK -->
+        <div class="feedback-list" id="feedbackList" aria-label="Danh sách đánh giá của độc giả">
+
+          <article class="feedback-card reveal-fade-up delay-1" data-feedback-id="1">
+            <div class="feedback-card-header">
+              <div class="feedback-avatar" aria-hidden="true">MA</div>
+              <div class="feedback-card-meta">
+                <span class="feedback-customer-name">Minh Anh</span>
+                <div class="feedback-stars" aria-label="5 sao">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <time class="feedback-date" datetime="2026-09-15">15/09/2026</time>
+            </div>
+            <p class="feedback-content">&ldquo;Nhà Giả Kim thực sự là một tuyệt phẩm. Cuốn sách giúp tôi tìm lại động lực và ý chí theo đuổi ước mơ của mình.&rdquo;</p>
+          </article>
+
+          <article class="feedback-card reveal-fade-up delay-2" data-feedback-id="2">
+            <div class="feedback-card-header">
+              <div class="feedback-avatar" aria-hidden="true">HN</div>
+              <div class="feedback-card-meta">
+                <span class="feedback-customer-name">Hoàng Nam</span>
+                <div class="feedback-stars" aria-label="4 sao">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+              </div>
+              <time class="feedback-date" datetime="2026-09-22">22/09/2026</time>
+            </div>
+            <p class="feedback-content">&ldquo;Văn phong đẹp, ý nghĩa sâu sắc. Mỗi trang sách là một bài học quý giá về hành trình tìm kiếm bản thân.&rdquo;</p>
+          </article>
+
+          <article class="feedback-card reveal-fade-up delay-3" data-feedback-id="3">
+            <div class="feedback-card-header">
+              <div class="feedback-avatar" aria-hidden="true">TP</div>
+              <div class="feedback-card-meta">
+                <span class="feedback-customer-name">Thu Phương</span>
+                <div class="feedback-stars" aria-label="5 sao">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <time class="feedback-date" datetime="2026-10-01">01/10/2026</time>
+            </div>
+            <p class="feedback-content">&ldquo;Đọc lần đầu năm 2020, đọc lại vào 2026 — mỗi lần đọc lại tôi đều cảm nhận được điều gì đó mới. Đây là cuốn sách tôi sẽ giữ suốt đời.&rdquo;</p>
+          </article>
+
+        </div>
+
+        <!-- FORM GỬI FEEDBACK -->
+        <div class="feedback-form-wrapper reveal-fade-right delay-2">
+          <h3 class="feedback-form-title">Chia sẻ cảm nhận của bạn</h3>
+          <p class="feedback-form-subtitle">Đánh giá của bạn giúp chúng tôi lan toả tình yêu sách đến nhiều người hơn.</p>
+
+          <form method="post"
+                asp-controller="Feedback"
+                asp-action="Create"
+                id="feedbackForm"
+                class="feedback-form"
+                novalidate>
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+              <label for="feedbackCustomerName">Họ và tên <span class="required-mark" aria-hidden="true">*</span></label>
+              <input type="text"
+                     id="feedbackCustomerName"
+                     name="CustomerName"
+                     placeholder="Ví dụ: Nguyễn Thị Lan"
+                     required
+                     autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label for="feedbackEmail">Email <span class="required-mark" aria-hidden="true">*</span></label>
+              <input type="email"
+                     id="feedbackEmail"
+                     name="Email"
+                     placeholder="email@example.com"
+                     required
+                     autocomplete="email">
+            </div>
+
+            <div class="form-group">
+              <label>Đánh giá số sao <span class="required-mark" aria-hidden="true">*</span></label>
+              <div class="star-picker" id="starPicker" role="radiogroup" aria-label="Chọn số sao">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 sao">&#9733;</button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 sao">&#9733;</button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 sao">&#9733;</button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 sao">&#9733;</button>
+                <button type="button" class="star-btn active" data-value="5" aria-label="5 sao">&#9733;</button>
+              </div>
+              <input type="hidden" id="feedbackStarRating" name="StarRating" value="5">
+            </div>
+
+            <div class="form-group">
+              <label for="feedbackContent">Nội dung đánh giá <span class="required-mark" aria-hidden="true">*</span></label>
+              <textarea id="feedbackContent"
+                        name="Content"
+                        rows="4"
+                        placeholder="Chia sẻ cảm nhận của bạn về cuốn sách..."
+                        required></textarea>
+            </div>
+
+            <button type="submit" class="btn-gold feedback-submit-btn">
+              Gửi đánh giá &rarr;
+            </button>
+
+          </form>
+
+          <div class="feedback-form-message" id="feedbackFormMessage" aria-live="polite" hidden></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" id="purchase">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-left-col reveal-fade-left">
+          <h2 class="footer-slogan">ĐỌC MỘT CUỐN SÁCH, THAY ĐỔI MỘT HÀNH TRÌNH.</h2>
+          <div class="footer-copyright">&copy; 2026 Nhà Giả Kim. All rights reserved.</div>
+        </div>
+
+        <div class="footer-center-col reveal-fade-up delay-1">
+          <nav class="footer-nav">
+            <a href="#hero" class="footer-nav-link">Trang chủ</a>
+            <a href="#author" class="footer-nav-link">Tác giả</a>
+            <a href="#recognition" class="footer-nav-link">Review</a>
+            <a href="#readers" class="footer-nav-link">Feedback</a>
+          </nav>
+          <form class="footer-newsletter-form" id="newsletterForm"
+            onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận bản tin từ Nhà Giả Kim!');">
+            <span class="newsletter-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </span>
+            <input type="email" class="newsletter-input" placeholder="Nhập email của bạn..." required
+              aria-label="Email nhận bản tin" />
+            <button type="submit" class="newsletter-submit-btn" aria-label="Gửi email">&rarr;</button>
+          </form>
+          <div class="footer-social-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="YouTube">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="TikTok">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.48 2.82 1.5-.01 2.81-1.06 3.15-2.52.09-.43.12-.88.12-1.33V.02h-.03z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-right-col reveal-fade-right delay-2">
+          <div class="footer-art-thumbnail image-placeholder" title="Bầu trời sa mạc đêm">
+            <img src="~/img/banner.png" alt="Lữ hành sa mạc đêm"
+              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 220 110\' fill=\'%2314110e\'><rect width=\'220\' height=\'110\'/><circle cx=\'180\' cy=\'30\' r=\'12\' fill=\'%23e4c57c\' opacity=\'0.7\'/><path d=\'M0 90 Q 60 70 120 85 T 220 75 L 220 110 L 0 110 Z\' fill=\'%23251e18\'/><circle cx=\'110\' cy=\'82\' r=\'4\' fill=\'%23e4c57c\'/></svg>'" />
+          </div>
+          <div class="footer-quote">
+            &ldquo;Không có gì là ngẫu nhiên, tất cả đều có lý do.&rdquo;
+            <span class="footer-quote-author">&mdash; Paulo Coelho</span>
+          </div>
+          <a asp-controller="Orders" asp-action="Create" class="btn-gold footer-buy-btn">MUA NHÀ GIẢ KIM &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="~/js/script.js" asp-append-version="true" defer></script>
+  <script src="~/js/order.js" asp-append-version="true" defer></script>
+</body>
+
+</html>

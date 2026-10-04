@@ -1,0 +1,318 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Đặt hàng — Nhà Giả Kim | Paulo Coelho";
+}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewData["Title"]</title>
+  <meta name="description" content="Đặt mua sách Nhà Giả Kim bản đặc biệt bìa cứng cao cấp. Giao hàng toàn quốc.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Dùng chung design system với landing page -->
+  <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+  <!-- CSS riêng cho trang đặt hàng -->
+  <link rel="stylesheet" href="~/css/order.css" asp-append-version="true">
+</head>
+
+<body class="order-page">
+
+  <!-- ============================================================
+       HEADER — giống landing page, điều hướng về trang chủ
+       ============================================================ -->
+  <header class="site-header" id="orderPageHeader">
+    <div class="container header-container">
+      <a asp-controller="Home" asp-action="Index" class="brand-logo" aria-label="Về trang chủ Nhà Giả Kim">
+        <div class="brand-icon-wrapper">
+          <svg class="brand-icon-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="14" r="5" fill="#C9A050" opacity="0.85" />
+            <path d="M4 32L16 16L24 26L36 10L40 32H4Z" stroke="#E4C57C" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M16 16L24 28" stroke="#E4C57C" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="brand-text">Nhà Giả Kim</span>
+      </a>
+
+      <nav class="order-breadcrumb" aria-label="Breadcrumb">
+        <a asp-controller="Home" asp-action="Index" class="breadcrumb-link">Trang chủ</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">Đặt hàng</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN — TRANG ĐẶT HÀNG
+       ============================================================ -->
+  <main class="order-main" id="orderMain">
+    <div class="container">
+
+      <div class="order-page-header reveal-fade-up">
+        <div class="section-tag theme-dark">
+          <span class="number">ĐẶT</span><span class="line"></span><span>HÀNG</span>
+        </div>
+        <h1 class="order-page-title">Đặt Mua Nhà Giả Kim</h1>
+        <p class="order-page-subtitle">Bản đặc biệt bìa cứng cao cấp &bull; Tặng kèm Bookmark mạ vàng &bull; Giao hàng toàn quốc</p>
+      </div>
+
+      <form method="post"
+            asp-controller="Orders"
+            asp-action="Create"
+            id="orderPageForm"
+            class="order-page-form"
+            novalidate>
+        @Html.AntiForgeryToken()
+
+        <div class="order-grid">
+
+          <!-- ====================================================
+               CỘT TRÁI — Thông tin sản phẩm + Thông tin khách hàng
+               ==================================================== -->
+          <div class="order-left-col">
+
+            <!-- --------------------------------------------------
+                 PHẦN 1: THÔNG TIN SẢN PHẨM
+                 -------------------------------------------------- -->
+            <section class="order-section order-product-section" aria-labelledby="productSectionTitle">
+              <h2 class="order-section-title" id="productSectionTitle">
+                <span class="order-section-number">01</span>
+                Thông tin sản phẩm
+              </h2>
+
+              <div class="order-product-list" id="orderProductList">
+
+                <div class="order-product-item" data-book-id="1">
+                  <div class="order-product-image image-placeholder">
+                    <img src="~/img/sach.png"
+                         alt="Bìa sách Nhà Giả Kim — Paulo Coelho"
+                         onerror="this.style.display='none'">
+                  </div>
+
+                  <div class="order-product-info">
+                    <h3 class="order-book-title">Nhà Giả Kim — The Alchemist</h3>
+                    <p class="order-book-meta">Paulo Coelho &bull; Bìa cứng đặc biệt</p>
+                    <div class="order-unit-price" data-unit-price="129000">129.000 đ / cuốn</div>
+                  </div>
+
+                  <div class="order-product-controls">
+                    <div class="order-qty-wrapper">
+                      <label for="orderQty1" class="order-qty-label">Số lượng</label>
+                      <div class="order-qty-stepper">
+                        <button type="button"
+                                class="qty-stepper-btn qty-decrease"
+                                aria-label="Giảm số lượng"
+                                data-target="orderQty1">&#8722;</button>
+                        <input type="number"
+                               id="orderQty1"
+                               name="OrderItems[0].Quantity"
+                               class="qty-input"
+                               value="1"
+                               min="1"
+                               max="99"
+                               aria-label="Số lượng cuốn sách"
+                               readonly>
+                        <button type="button"
+                                class="qty-stepper-btn qty-increase"
+                                aria-label="Tăng số lượng"
+                                data-target="orderQty1">&#43;</button>
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="OrderItems[0].BookId" value="1">
+                    <input type="hidden" name="OrderItems[0].UnitPrice" value="129000">
+
+                    <div class="order-subtotal" id="subtotal1" aria-live="polite">129.000 đ</div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- --------------------------------------------------
+                 PHẦN 2: THÔNG TIN KHÁCH HÀNG
+                 -------------------------------------------------- -->
+            <section class="order-section order-customer-section" aria-labelledby="customerSectionTitle">
+              <h2 class="order-section-title" id="customerSectionTitle">
+                <span class="order-section-number">02</span>
+                Thông tin khách hàng
+              </h2>
+
+              <div class="order-customer-fields">
+
+                <div class="form-group">
+                  <label for="orderCustomerName">
+                    Họ và tên
+                    <span class="required-mark" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text"
+                         id="orderCustomerName"
+                         name="Customer.FullName"
+                         placeholder="Ví dụ: Nguyễn Văn An"
+                         required
+                         autocomplete="name">
+                </div>
+
+                <div class="order-form-row">
+                  <div class="form-group">
+                    <label for="orderCustomerPhone">
+                      Số điện thoại
+                      <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input type="tel"
+                           id="orderCustomerPhone"
+                           name="Customer.Phone"
+                           placeholder="098x xxx xxx"
+                           required
+                           autocomplete="tel"
+                           pattern="[0-9]{9,11}">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="orderCustomerEmail">
+                      Email
+                      <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input type="email"
+                           id="orderCustomerEmail"
+                           name="Customer.Email"
+                           placeholder="email@example.com"
+                           required
+                           autocomplete="email">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="orderCustomerAddress">
+                    Địa chỉ nhận hàng
+                    <span class="required-mark" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text"
+                         id="orderCustomerAddress"
+                         name="Customer.Address"
+                         placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố"
+                         required
+                         autocomplete="street-address">
+                </div>
+
+                <div class="form-group">
+                  <label for="orderNote">Ghi chú đơn hàng</label>
+                  <textarea id="orderNote"
+                            name="Customer.Note"
+                            rows="3"
+                            placeholder="Ví dụ: Giao buổi sáng, gọi trước khi giao..."></textarea>
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+
+          <!-- ====================================================
+               CỘT PHẢI — Tóm tắt đơn hàng + Nút đặt hàng
+               ==================================================== -->
+          <aside class="order-right-col" aria-label="Tóm tắt đơn hàng">
+
+            <div class="order-summary-card reveal-fade-right">
+              <h2 class="order-section-title">
+                <span class="order-section-number">03</span>
+                Tóm tắt đơn hàng
+              </h2>
+
+              <div class="order-summary-body">
+
+                <div class="summary-row">
+                  <span class="summary-label">Tạm tính</span>
+                  <span class="summary-value summary-subtotal" id="summarySubtotal" aria-live="polite">129.000 đ</span>
+                </div>
+
+                <div class="summary-row">
+                  <span class="summary-label">
+                    Phí vận chuyển
+                    <small class="summary-label-note">(Miễn phí khi mua từ 2 cuốn)</small>
+                  </span>
+                  <span class="summary-value summary-shipping" id="summaryShipping" aria-live="polite">30.000 đ</span>
+                </div>
+
+                <div class="summary-divider" aria-hidden="true"></div>
+
+                <div class="summary-row summary-total-row">
+                  <span class="summary-label summary-total-label">Tổng thanh toán</span>
+                  <span class="summary-value summary-total" id="summaryTotal" aria-live="polite">159.000 đ</span>
+                </div>
+
+                <div class="summary-note-list">
+                  <p class="summary-note-item">&#10003; Giao hàng toàn quốc 2&ndash;5 ngày làm việc</p>
+                  <p class="summary-note-item">&#10003; Miễn phí vận chuyển khi mua từ 2 cuốn</p>
+                  <p class="summary-note-item">&#10003; Tặng kèm Bookmark mạ vàng đặc biệt</p>
+                  <p class="summary-note-item">&#10003; Đổi trả trong vòng 7 ngày nếu lỗi</p>
+                </div>
+
+                <button type="submit"
+                        class="btn-gold order-submit-btn"
+                        id="orderSubmitBtn">
+                  Đặt hàng &rarr;
+                </button>
+
+                <div class="order-form-message" id="orderFormMessage" aria-live="polite" hidden></div>
+
+              </div>
+            </div>
+
+            <!-- Thông tin bảo mật / thanh toán -->
+            <div class="order-trust-badges reveal-fade-up">
+              <div class="trust-badge">
+                <span class="trust-badge-icon">&#128274;</span>
+                <span>Thông tin được bảo mật</span>
+              </div>
+              <div class="trust-badge">
+                <span class="trust-badge-icon">&#128230;</span>
+                <span>Giao hàng nhanh toàn quốc</span>
+              </div>
+              <div class="trust-badge">
+                <span class="trust-badge-icon">&#10003;</span>
+                <span>Đổi trả dễ dàng</span>
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="order-footer">
+    <div class="container order-footer-inner">
+      <div class="order-footer-brand">
+        <span class="brand-text">Nhà Giả Kim</span>
+        <span class="order-footer-copy">&copy; 2026 Nhà Giả Kim. All rights reserved.</span>
+      </div>
+      <nav class="order-footer-nav" aria-label="Footer navigation">
+        <a asp-controller="Home" asp-action="Index" class="footer-nav-link">Trang chủ</a>
+        <a href="/#author" class="footer-nav-link">Tác giả</a>
+        <a href="/#feedback" class="footer-nav-link">Feedback</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JS chung (scroll reveal, navbar scroll effect) -->
+  <script src="~/js/script.js" asp-append-version="true" defer></script>
+  <!-- JS riêng cho trang đặt hàng -->
+  <script src="~/js/order.js" asp-append-version="true" defer></script>
+
+</body>
+
+</html>
